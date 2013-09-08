@@ -1,10 +1,12 @@
 package ch.mbruggmann.metricsriemann;
 
+import com.yammer.metrics.core.MetricsRegistry;
 import org.junit.Test;
 
-import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
 
 public class SimulatedHostTest {
 
@@ -13,7 +15,7 @@ public class SimulatedHostTest {
     final int requestExecutionTime = 100;
     final int jitterPercent = 10;
     SimulatedHost host = new SimulatedHost(
-        Executors.newSingleThreadScheduledExecutor(), 500, requestExecutionTime, jitterPercent);
+        mock(ScheduledExecutorService.class), mock(MetricsRegistry.class), 500, requestExecutionTime, jitterPercent);
 
     int smaller = 0;
     int bigger = 0;
